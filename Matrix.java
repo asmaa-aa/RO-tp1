@@ -1,7 +1,7 @@
 import java.util.Arrays;
 public class Matrix {
 	
-	public float matrix[][];
+    public float matrix[][];
     public int nbr_lignes;
     public int nbr_colonnes;
     
@@ -61,7 +61,7 @@ public class Matrix {
 
     public Matrix Multiplication_matrix(Matrix M) throws Exception {
 		if (this.nbr_colonnes != M.nbr_lignes) {
-			throw new Exception("le nombre de colonnes de la premiere matrice doit etre égale aux nombre des lignes de la deuxieme matrice ");
+			throw new Exception("le nombre de colonnes de la premiere matrice doit etre Ã©gale aux nombre des lignes de la deuxieme matrice ");
 		}
 		else {
 		Matrix resultat = new Matrix(this.nbr_lignes, M.nbr_colonnes);
@@ -79,7 +79,7 @@ public class Matrix {
 	}
     
     
-// la question 01 ( Implémenter l’algorithme iteration_GJ ):
+// la question 01 ( ImplÃ©menter lâ€™algorithme iteration_GJ ):
     
     public float[][] iteration_GJ(float [][] A, int r, int s) throws Exception {
     	
@@ -109,7 +109,7 @@ public class Matrix {
         }
     }
    
- // la question 02 (calcule l’inverse d’une matrice en utilise le code de l’algorithme iteration_GJ) :
+ // la question 02 (calcule lâ€™inverse dâ€™une matrice en utilise le code de lâ€™algorithme iteration_GJ) :
 
 	public Matrix augmente() {
 		
@@ -157,7 +157,7 @@ public class Matrix {
     	this.matrix = M.matrix;
     }
    
-    // la question 3 ( fonction qui calcule la solution d’un système d’équations) :
+    // la question 3 ( fonction qui calcule la solution dâ€™un systÃ¨me dâ€™Ã©quations) :
     
     public void gaussJordanSolveEquations() throws Exception {
     	
@@ -165,7 +165,7 @@ public class Matrix {
     		this.matrix = this.iteration_GJ(this.matrix, i, i);
     	}
     	
-		System.out.println("Solution de système d'équations:");
+		System.out.println("Solution de systÃ¨me d'Ã©quations:");
 		System.out.println(" \n");
 
         for (int i = 0; i < this.nbr_lignes ; i++) {
