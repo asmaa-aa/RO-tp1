@@ -3,39 +3,39 @@ public class TP1_main {
 
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
-		/*
-	// la question 4/a (Calculer l’inverse des matrices):
-		float[][] B = {{2,1},{3,1}};
-		float[][] A = {{2,-1,0},{-1,2,-1},{0,-1,2}};
-		float[][] C = {{2,1},{3,1}};
-
-		Matrix Matrix_B = new Matrix(B);
-		Matrix_B.gaussJordanInverse();
-		System.out.println("l'inverse de la matrice B :");
-		Matrix_B.Afficher();
 
 		
+	// la question 4/a (Calculer lâ€™inverse des matrices):
+		
+		/*
+		float[][] B = {{2,1},{3,1}};
+		float[][] A = {{2,-1,0},{-1,2,-1},{0,-1,2}};
+		 
+
 		Matrix Matrix_A = new Matrix(A);
 		Matrix_A.gaussJordanInverse();
 		System.out.println("l'inverse de la matrice A :");
 		Matrix_A.Afficher();
 		
-		Matrix Matrix_C = new Matrix(C);
-		Matrix_C.Afficher();
-		
-		
-		// la question 4/d (Résoudre le système d’équations) :
-		float[][] M = {{2,1,4,16},{3,2,1,10},{1,3,3,16}};
-		Matrix Matrix_M = new Matrix(M);
-		Matrix_M.gaussJordanSolveEquations();
+		Matrix Matrix_B = new Matrix(B);
+		Matrix_B.gaussJordanInverse();
+		System.out.println("l'inverse de la matrice B :");
+		Matrix_B.Afficher();
 
-		//la question 4/b :
+		*/
 		
+   //la question 4/b :
+		
+		/*
 		float[][] A = {{2,-1,0,10},{-1,2,-1,-4},{0,-1,2,2}};
 		
 		Matrix Matrix_A = new Matrix(A);
 		Matrix_A.gaussJordanSolveEquations();
-
+		*/
+		
+	//la question/c :
+		
+		/*
 		float[][] B = {{2,1},{3,1}};
 		float[][] A = {{2,-1,0},{-1,2,-1},{0,-1,2}};
 		Matrix Matrix_A = new Matrix(A);
@@ -46,15 +46,28 @@ public class TP1_main {
 		MltpA.Afficher();
 		System.out.println("B*B^(-1) :");
 		MltpB.Afficher();
+		*/
 		
-*/
-		float[][] A = {{1,0,1,0,0,6},{1/4,1,0,1,0,6},{3,2,0,0,1,22}};
+  // la question 4/d (RÃ©soudre le systÃ¨me dâ€™Ã©quations) :
+		/*
+		float[][] M = {{2,1,4,16},{3,2,1,10},{1,3,3,16}};
+		Matrix Matrix_M = new Matrix(M);
+		Matrix_M.gaussJordanSolveEquations();
+       */
+
+	
+  // le teste de simplexe : 
+
+		
+		float[] z = {60,30,20};
+		float[][] A = {{8,6,1},{4,2,1},{2,1,0}};
 		Matrix Matrix_A = new Matrix(A);
-		Matrix_A.gaussJordanSolveEquations();
-
-
-
-		Matrix_A.Afficher();
+		float[] b = {48,20,8};
+		
+		float[] solution  =Matrix_A.simplex( z,A,b,objectif.MAX );
+		
+		 
+		
 	}
 
 }
