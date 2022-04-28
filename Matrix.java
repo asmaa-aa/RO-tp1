@@ -176,16 +176,158 @@ public class Matrix {
         
 
     }
-  
-    
+   
     // simplex :
     
-
-    public void simplex() throws Exception {
+    
+    private static void tableauSimplex(float[][] A , String[] Variable_b){
     	
-
+    	System.out.print("| V B |");
+    	
+    	for(int i = 1 ; i < A[0].length; i++)
+    		System.out.print(" x"+i+" |");
+    	
+    	System.out.print(" b  |");
+    	System.out.println();
+    	
+    	for(int i = 0 ; i < A.length; i++) {
+    		
+    		System.out.print("| "+Variable_b[i]+" |");
+    		for (int j = 0 ; j< A[0].length; j++) {
+    			System.out.print(String.format("%,1.1f", A[i][j]) + " |");
+    			
+    		}
+    		
+    		System.out.println();
+    	}
+    	
+    	
+    }
+    		
+    // fonction qui cherche le variable a sortie :	
+    
+    private static int variable_S(float[][] M, int S) {
+	    int r = -1;
+	    float var = Float.MAX_VALUE;
+	    
+	    for (int j = 0; j < M.length - 1; j++) {
+	    	
+		    if (M[j][S] > 0)
+		    	
+		    	if (M[j][M[0].length -1 ] / M[j][S] < var) {
+		    		
+		    		var = M[j][M[0].length - 1] / M[j][S];
+		    		r = j;
+	
+		    	}
+	
+	     
+	    }
+	    return r;
     }
     
+ // fonction qui cherche le variable a entrer :	
+
+ 	private static int variable_E(float[][] M,objectif o) {
+ 		int I = 0;
+ 		for (int j = 0; j < M[0].length; j++)
+ 		
+ 			if ( M[M.length - 1][j] > M[M.length - 1][I] && o == o.MAX  )
+ 				I = j;
+ 			else
+ 		
+ 				if ( M[M.length - 1][j] < M[M.length - 1][I]  && o == o.MIN)
+ 					I = j ;
+ 		
+ 		 
+ 		
+ 		return I;
+ 	}
+
+
     
+    private static float[] Solution (float[] Z, float[][] M, String[] Variable_b) {
+    	
+    	float[] solution = new float[Z.length + 1];
+    	
+    	for (int i = 0; i < Variable_b.length - 1; i++) {
+    		
+	    	int index = Integer.parseInt(Variable_b[i].substring(1));
+	    	if(index < solution.length)
+	    	solution[index - 1] = M[i][M[0]. length - 1];
+    	
+    	}
+    	
+    	solution[solution.length -1 ] = M[M.length -1][M[0].length-1] * -1 ;
+    	
+    	return solution ;
+    }
+
+
+		
+	private static void EcartStandarisation(float[] Z, float[][] A, float[] B, float[][] M, String[] Variable_b) {
+
+		Variable_b[Variable_b.length - 1] ="-Z" ;
+		
+		for (int i = 0 ; i < A.length; i++) {
+
+			M[i][i + A.length - 1] = 1 ;
+			M[i][M[0].length - 1] = B[i];
+			Variable_b[i] ="x" + (i + A.length + 1);
+			
+			for (int j = 0; j < A[0].length; j++) {
+				
+				M[i][j]= A[i][j];
+				
+				if ( j< Z.length)
+					M[M.length - 1][j] = Z[j];
+				
+		}
+	
+	    }
+		}
+	
+	
+	private static boolean EstOptimal(float[][] t,objectif o) {
+		
+			for (int j = 0; j < t[0].length; j++)
+			if (t[t.length - 1][j] > 0 && o == o.MAX )
+				return true;
+			else 
+				if (t[t.length - 1][j] < 0 && o == o.MIN )
+						return true;
+				
+			return false;
+			
+
+	}
+
+    
+    public float[] simplex(float[] Z ,float[][] A , float[] B , objectif objectif ) throws Exception {
+    	
+    	float[][] M = new float[A.length+1][A.length + Z.length + 1];
+    	 
+    	String[] S = new String[A.length +1];
+    	
+    	EcartStandarisation(Z,A,B,M,S);
+    	
+    	for (int iteration = 1; EstOptimal(M, objectif); iteration++) {
+    		
+    		System.out.println("iteration = " + iteration);
+    		tableauSimplex(M, S);
+    		int c = variable_E(M, objectif);
+    		int r = variable_S(M, c);
+    		S[r]="x" + (c+1);
+    		
+    		System.out.println("s =" + c + "r = " + r);
+    		iteration_GJ(M , r , c);
+
+         }
+    	
+    	tableauSimplex(M, S);
+    	return Solution(Z, M ,S);
+    	
+    
+    }
 
 }
