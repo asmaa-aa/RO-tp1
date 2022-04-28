@@ -24,7 +24,8 @@ public class Matrix {
     }
     
     
-    
+    // fonction qui affiche une matrice :
+	
     public void Afficher()
     {
     	System.out.println(" \n");
@@ -39,6 +40,8 @@ public class Matrix {
         
     }
     
+	
+    // calculer le transposer d'une matrice :
     public Matrix Transpose_Matrix() {
     	
 		Matrix M = new Matrix(this.nbr_colonnes, this.nbr_lignes);
@@ -49,6 +52,8 @@ public class Matrix {
 		
 	}
     
+	
+   // calculer l'identite d'une matrice :
     public Matrix identite(int i) {
     	
 		Matrix identite = new Matrix(i, i);
@@ -58,7 +63,7 @@ public class Matrix {
 	}
     
     
-
+   
     public Matrix Multiplication_matrix(Matrix M) throws Exception {
 		if (this.nbr_colonnes != M.nbr_lignes) {
 			throw new Exception("le nombre de colonnes de la premiere matrice doit etre égale aux nombre des lignes de la deuxieme matrice ");
