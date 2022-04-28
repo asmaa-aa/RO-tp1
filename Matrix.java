@@ -228,7 +228,7 @@ public class Matrix {
     	
     	for(int i = 0 ; i < A.length; i++) {
     		
-    		System.out.print("| "+Variable_b[i]+" |");
+    		System.out.print("| "+Variable_b[i]+"  |");
     		for (int j = 0 ; j< A[0].length; j++) {
     			System.out.print(String.format("%,1.1f", A[i][j]) + " |");
     			
