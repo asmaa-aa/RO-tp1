@@ -1,4 +1,4 @@
-// la reponse de chaque question est mit en commentaire , enleves les /* */ pour executer ( l'execution de chaque question est independante ) .
+// **** la reponse de chaque question est mit en commentaire , enleves les /* */ pour executer ( l'execution de chaque question est independante ) .
 public class TP1_main {
 
 	public static void main(String[] args) throws Exception {
