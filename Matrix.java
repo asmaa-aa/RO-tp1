@@ -42,6 +42,7 @@ public class Matrix {
     
 	
     // calculer le transposer d'une matrice :
+	
     public Matrix Transpose_Matrix() {
     	
 		Matrix M = new Matrix(this.nbr_colonnes, this.nbr_lignes);
@@ -54,6 +55,7 @@ public class Matrix {
     
 	
    // calculer l'identite d'une matrice :
+	
     public Matrix identite(int i) {
     	
 		Matrix identite = new Matrix(i, i);
@@ -130,7 +132,8 @@ public class Matrix {
 	    return M;
 	}
 	
-    
+    // calculer l'inverse en utulisante gauss-Jordan :
+	
     public void gaussJordanInverse() throws Exception {
     	
     	Matrix M = new Matrix(this.matrix);
@@ -184,8 +187,36 @@ public class Matrix {
    
     // simplex :
     
+    public float[] simplex(float[] Z ,float[][] A , float[] B , objectif objectif ) throws Exception {
+    	
+    	float[][] M = new float[A.length+1][A.length + Z.length + 1];
+    	 
+    	String[] S = new String[A.length +1];
+    	
+    	EcartStandarisation(Z,A,B,M,S);
+    	
+    	for (int iteration = 1; EstOptimal(M, objectif); iteration++) {
+    		
+    		System.out.println("iteration = " + iteration);
+    		tableauSimplex(M, S);
+    		int c = variable_E(M, objectif);
+    		int r = variable_S(M, c);
+    		S[r]="x" + (c+1);
+    		
+    		System.out.println("s =" + c + "r = " + r);
+    		iteration_GJ(M , r , c);
+
+         }
+    	
+    	tableauSimplex(M, S);
+    	return Solution(Z, M ,S);
+    	
     
-    private static void tableauSimplex(float[][] A , String[] Variable_b){
+    }
+	
+	// afficher le tableau simplex :
+	
+	 private static void tableauSimplex(float[][] A , String[] Variable_b){
     	
     	System.out.print("| V B |");
     	
@@ -308,31 +339,5 @@ public class Matrix {
 	}
 
     
-    public float[] simplex(float[] Z ,float[][] A , float[] B , objectif objectif ) throws Exception {
-    	
-    	float[][] M = new float[A.length+1][A.length + Z.length + 1];
-    	 
-    	String[] S = new String[A.length +1];
-    	
-    	EcartStandarisation(Z,A,B,M,S);
-    	
-    	for (int iteration = 1; EstOptimal(M, objectif); iteration++) {
-    		
-    		System.out.println("iteration = " + iteration);
-    		tableauSimplex(M, S);
-    		int c = variable_E(M, objectif);
-    		int r = variable_S(M, c);
-    		S[r]="x" + (c+1);
-    		
-    		System.out.println("s =" + c + "r = " + r);
-    		iteration_GJ(M , r , c);
-
-         }
-    	
-    	tableauSimplex(M, S);
-    	return Solution(Z, M ,S);
-    	
-    
-    }
 
 }
