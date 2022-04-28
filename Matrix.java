@@ -209,6 +209,7 @@ public class Matrix {
          }
     	
     	tableauSimplex(M, S);
+	System.out.println("Z = " + M[M.length-1][M[0].length-1]*(-1));
     	return Solution(Z, M ,S);
     	
     
