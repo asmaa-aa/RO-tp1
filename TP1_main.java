@@ -67,7 +67,7 @@ public class TP1_main {
 		Matrix Matrix_A = new Matrix(A);
 		float[] b = {48,20,8};
 		
-		float[] solution  =Matrix_A.simplex( z,b,objectif.MAX );
+		float[] solution  = Matrix_A.simplex( z,b,objectif.MAX );
 		
 		 
 		
