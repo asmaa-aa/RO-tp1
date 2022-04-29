@@ -189,6 +189,8 @@ public class Matrix {
     
     public float[] simplex(float[] Z , float[] B , objectif objectif ) throws Exception {
     	
+	float[][] A = this.matrix;
+	    
     	float[][] M = new float[A.length+1][A.length + Z.length + 1];
     	 
     	String[] S = new String[A.length +1];
