@@ -187,7 +187,7 @@ public class Matrix {
    
     // simplex :
     
-    public float[] simplex(float[] Z ,float[][] A , float[] B , objectif objectif ) throws Exception {
+    public float[] simplex(float[] Z , float[] B , objectif objectif ) throws Exception {
     	
     	float[][] M = new float[A.length+1][A.length + Z.length + 1];
     	 
@@ -238,7 +238,7 @@ public class Matrix {
     		System.out.println();
     	}
     	
-    	
+    	System.out.println();
     }
     		
     // fonction qui cherche le variable a sortie :	
